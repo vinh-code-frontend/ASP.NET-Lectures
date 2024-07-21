@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@(ViewData["Title"] ?? "ASP.NET project") </title>
+    <link href="~/style.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="navbar-brand">ASP.NET project</div>
+            <div class="navbar-menu">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/products">Products</a>
+                <a href="/search-products">Search</a>
+                <a href="/order-products">Order</a>
+            </div>
+        </div>
+        <div class="page-content">
+            @RenderBody()
+        </div>
+    </div>
+
+    @RenderSection("FooterSection", false)
+</body>
+</html>
