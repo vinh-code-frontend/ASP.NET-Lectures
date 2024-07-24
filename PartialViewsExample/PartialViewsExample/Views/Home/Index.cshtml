@@ -1,0 +1,22 @@
+﻿<h1 class="py-1">Home</h1>
+
+<partial name="_ListPartial"></partial>
+
+<h3 class="py-1">Another way:</h3>
+
+@{
+    List<User> user = new List<User>() {
+                new User ()
+                {
+                    Id = 1,
+                    Name ="Tít",
+                    Job = "Ngủ"
+                }
+            };
+    ViewData["Data"] = user;
+    var newViewData = new ViewDataDictionary(ViewData);
+
+    await Html.RenderPartialAsync("_ListPartial", newViewData);
+}
+
+@await Html.PartialAsync("_ListPartial")

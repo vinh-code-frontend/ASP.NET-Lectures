@@ -1,0 +1,25 @@
+﻿@model List<User>
+
+@{
+    List<User>? results = (List<User>)ViewBag.Data;
+    if(Model != null) {
+        results = Model;
+    }
+}
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Job</th>
+    </tr>
+    @if (results != null)
+    {
+        @foreach (var item in results)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Job</td>
+            </tr>
+        }
+    }
+</table>

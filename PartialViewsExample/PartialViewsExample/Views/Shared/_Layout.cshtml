@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/style.css"/>
+</head>
+<body>
+    <div>
+        <div class="navbar">
+            <div class="navbar-logo">Asp.net project</div>
+            <div class="navbar-menu">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/friends">Friends</a>
+            </div>
+        </div>
+    <div class="container">
+        @RenderBody()
+    </div>
+    </div>
+</body>
+</html>
