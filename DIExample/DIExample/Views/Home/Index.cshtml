@@ -1,0 +1,43 @@
+﻿@model IEnumerable<string>
+@inject ICitiesService citiesServiceInView  
+
+@*
+    inject service to view when we want to use some service that not provided by controllers
+*@
+
+@{
+    ViewBag.Title = "Home";
+    List<string> cityFromServiceInView = citiesServiceInView.GetCities();
+}
+
+<h1>Home</h1>
+
+<table>
+    <tr>
+        <th>City name</th>
+    </tr>
+    @foreach(string city in Model) {
+        <tr>
+            <td>@city</td>
+        </tr>
+    }
+</table>
+<div>@ViewBag.Service_1</div>
+<div>@ViewBag.Service_2</div>
+<div>@ViewBag.Service_3</div>
+<div>new scope: @ViewBag.Service_Scoped</div>
+
+<h3>Service in view</h3>
+
+<table>
+    <tr>
+        <th>City name</th>
+    </tr>
+    @foreach (string city in cityFromServiceInView)
+    {
+        <tr>
+            <td>@city</td>
+        </tr>
+    }
+</table>
+<div>@citiesServiceInView.ServiceInstanceId</div>
