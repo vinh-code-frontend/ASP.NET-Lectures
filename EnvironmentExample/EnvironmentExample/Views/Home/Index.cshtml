@@ -1,0 +1,11 @@
+﻿<h1>Hello</h1>
+
+<p>Current environment is: @ViewBag.CurrentEnv</p>
+
+<environment include="Development, Staging">
+    <button>Button for Dev only</button>
+</environment>
+
+<environment exclude="Development">
+    <button>Button for all env but not for Dev</button>
+</environment>
