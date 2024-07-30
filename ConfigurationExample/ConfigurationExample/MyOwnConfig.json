@@ -1,0 +1,6 @@
+{
+  "WeatherApi": {
+    "ClientID": "client-id-123455 from MyOwnConfig.json",
+    "ClientSecret": "vkl-secret-a from MyOwnConfig.json"
+  }
+}
