@@ -1,20 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using StocksApp.Services;
+using Microsoft.Extensions.Options;
+using StocksApp.Models;
+using StocksApp.ServiceContracts;
 
 namespace StocksApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly MyService _myService;
-        public HomeController(MyService myService)
+        private readonly IFinnhubService _myService;
+        private readonly IOptions<TradingOptions> _tradingOption;
+
+        public HomeController(IFinnhubService myService, IOptions<TradingOptions> tradingOption)
         {
             _myService = myService;
+            _tradingOption = tradingOption;
         }
         [Route("/")]
         public async Task<IActionResult> Index()
         {
-            await _myService.method();
-            return View();
+            string defaultSymbol = _tradingOption.Value.DefaultStockSymbol ?? "";
+
+            Dictionary<string, object>? dictionary = await _myService.GetStockPriceQoute(defaultSymbol);
+            if (dictionary == null)
+            {
+                return View(null);
+            }
+            Stock stock = new Stock()
+            {
+                StockSymbol = defaultSymbol,
+                CurrentPrice = Convert.ToDouble(dictionary["c"].ToString()),
+                HighestPrice = Convert.ToDouble(dictionary["h"].ToString()),
+                LowestPrice = Convert.ToDouble(dictionary["l"].ToString()),
+                OpenPrice = Convert.ToDouble(dictionary["o"].ToString()),
+            };
+            return View(stock);
         }
     }
 }

@@ -1,5 +1,34 @@
-﻿@{
+﻿@using StocksApp.Models;
+@model Stock?;
+
+@{
     ViewBag.Title = "Stock app";
 }
 
-<h1>test</h1>
+@if(Model != null)
+{
+    <h3>@Model.StockSymbol</h3>
+    <table>
+        <tr>
+            <td>Current price:</td>
+            <td>@Model.CurrentPrice</td>
+        </tr>
+        <tr>
+            <td>Highest price:</td>
+            <td>@Model.HighestPrice</td>
+        </tr>
+         <tr>
+            <td>Lowest price:</td>
+            <td>@Model.LowestPrice</td>
+        </tr>
+        <tr>
+            <td>Open price:</td>
+            <td>@Model.OpenPrice</td>
+        </tr>
+        
+    </table>
+} 
+else
+{
+    <div style="color: red">Unexpected error</div>
+}
