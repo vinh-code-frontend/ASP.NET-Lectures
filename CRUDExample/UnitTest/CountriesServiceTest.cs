@@ -107,5 +107,27 @@ namespace UnitTest
             }
         }
         #endregion
+
+        #region GetCountryByCountryID
+        [Fact]
+        public void GetCountryByCountryID_NullCountryID()
+        {
+            Guid? countryId = null;
+
+            CountryResponse? countryResponseFromGetMethod = _countriesService.GetCountryByCountryID(countryId);
+
+            Assert.Null(countryResponseFromGetMethod);
+        }
+        [Fact]
+        public void GetCountryByCountryID_ValidCountryID()
+        {
+            CountryAddRequest? countryAddRequest = new CountryAddRequest() { CountryName = "Vietnam" };
+            CountryResponse countryResponseFromAdd = _countriesService.AddCountry(countryAddRequest);
+
+            CountryResponse? countryResponseFromGet = _countriesService.GetCountryByCountryID(countryResponseFromAdd.CountryID);
+
+            Assert.Equal(countryResponseFromAdd, countryResponseFromGet);
+        }
+        #endregion
     }
 }
